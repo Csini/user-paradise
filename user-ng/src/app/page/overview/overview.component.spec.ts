@@ -1,15 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 
 import { OverviewComponent } from './overview.component';
+
+
+import { RouterTestingModule } from '@angular/router/testing';
+// Http testing module and mocking controller
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { UserService } from 'src/app/gen';
+
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
   let fixture: ComponentFixture<OverviewComponent>;
 
+  let injector: TestBed;
+  let service: UserService;
+  let httpMock: HttpTestingController;
+
+
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule,  HttpClientTestingModule],
+      providers : [UserService],
       declarations: [OverviewComponent]
     });
+
+    injector = getTestBed();
+  service = injector.get(UserService);
+  httpMock = injector.get(HttpTestingController);
     fixture = TestBed.createComponent(OverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

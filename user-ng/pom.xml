@@ -71,6 +71,17 @@
 							<commandlineArgs>run build</commandlineArgs>
 						</configuration>
 					</execution>
+					<execution>
+						<id>ng-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>npm</executable>
+							<commandlineArgs>test</commandlineArgs>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
