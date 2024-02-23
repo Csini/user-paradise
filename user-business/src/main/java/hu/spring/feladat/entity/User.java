@@ -40,7 +40,7 @@ public class User implements Serializable {
 	@Column(name = "lastname")
 	@Length(min = 2, max = 64)
 	private String lastname;
-	
+
 	@Column(name = "address")
 	@Length(min = 0, max = 128)
 	private String address;
@@ -51,13 +51,21 @@ public class User implements Serializable {
 
 	@Column(name = "active")
 	private Boolean active = false;
-	
+
 	@Column(name = "job")
 	@Enumerated(EnumType.STRING)
 	private Job job = Job.UNKNOWN;
-	
-	//optimistic locking
+
+	// optimistic locking
 	@UpdateTimestamp
 	@Version
-    private Instant lastUpdatedOn;
+	private Instant lastUpdatedOn;
+
+	public String getFullname() {
+		return firstname + " " + lastname;
+	}
+
+	public String getActivelabel() {
+		return (getActive() != null && getActive()) ? "igen" : "nem";
+	}
 }

@@ -18,9 +18,11 @@ export interface User {
     id: number;
     firstname: string;
     lastname: string;
+    fullname?: string;
     address?: string;
     telephone?: string;
     active?: boolean;
+    activelabel?: string;
     job: User.JobEnum;
 }
 export namespace User {

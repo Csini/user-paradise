@@ -1,2 +1,24 @@
 <p>overview works!</p>
 <p>{{users | json}}</p>
+<section class="live-updates-wrapper">
+  <div class="table-wrapper">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th><a (click)="sortOn('fullname')">Név</a></th>
+          <th><a (click)="sortOn('job')">Foglalkozás</a></th>
+          <th><a (click)="sortOn('active')">Aktív</a></th>
+          <th>Műveletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users$ | async">
+          <td>{{ user.fullname }}</td>
+          <td>{{ user.job }}</td>
+          <td>{{ user.activelabel }}</td>
+          <td><button>Törlés</button><button>Módosítás</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

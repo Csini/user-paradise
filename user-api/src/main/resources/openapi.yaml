@@ -140,6 +140,9 @@ components:
           example: "Selec"
           minLength: 2
           maxLength: 64
+        fullname:
+          type: string
+          example: "Tom Selec"
         address:
           type: string
           example: "1053 Budapest Álom utca 2."
@@ -153,6 +156,9 @@ components:
         active:
           type: boolean
           example: true
+        activelabel:
+          type: string
+          example: "igen"
         job:
           type: string
           enum: ["UNKNOWN", "KERTESZ", "HENTES", "PEK"]
