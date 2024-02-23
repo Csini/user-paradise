@@ -1,0 +1,26 @@
+target
+*/target
+.settings
+*/.settings
+.project
+*/.project
+.classpath
+*/classpath
+logs
+*/logs
+
+# Node
+user-ng/node_modules
+user-ng/npm-debug.log
+user-ng/yarn-error.log
+
+# Miscellaneous
+user-ng/.angular/cache
+user-ng/.sass-cache/
+user-ng/connect.lock
+user-ng/coverage
+user-ng/libpeerconnection.log
+user-ng/testem.log
+user-ng/typings
+
+user-ng/dist
