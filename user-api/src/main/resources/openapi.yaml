@@ -22,6 +22,7 @@ paths:
       summary: Get all users.
       tags: 
         - User
+      operationId: readAllUser
       responses:
         200:
           description: ""
@@ -39,6 +40,7 @@ paths:
       summary: Create a user.
       tags: 
         - User
+      operationId: createUser
       requestBody:
         content:
           application/json:
@@ -60,11 +62,14 @@ paths:
     - name: id
       in: path
       required: true
-      schema: {}
+      schema: 
+          type: integer
+          example: 123
     get:
       summary: Get a user by its id.
       tags: 
         - User
+      operationId: readUser
       responses:
         200:
           description: ""
@@ -80,6 +85,7 @@ paths:
       summary: Update a user.
       tags: 
         - User
+      operationId: updateUser
       requestBody:
         content:
           application/json:
@@ -100,12 +106,16 @@ paths:
       summary: Delete a user.
       tags: 
         - User
+      operationId: deleteUser
       responses:
         200:
           description: ""
           content:
             application/json:
-              schema: {}
+              schema:
+                type: integer
+                example: 123
+                description: "id of the deleted User"
         400:
           $ref: '#/components/responses/BadRequestError'
         500:

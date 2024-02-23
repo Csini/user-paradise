@@ -1,0 +1,2 @@
+-- do nothing
+SELECT * FROM USER_PARADISE_USER

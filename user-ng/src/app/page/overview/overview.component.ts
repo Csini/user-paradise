@@ -18,7 +18,7 @@ export class OverviewComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.userService.apiUsersGet()
+    this.userService.readAllUser()
     .subscribe(users => this.users = users);
   }
 }

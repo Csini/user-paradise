@@ -1,7 +1,9 @@
 package hu.spring.feladat.entity;
 
 import java.io.Serializable;
+import java.time.Instant;
 
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
@@ -11,6 +13,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -52,4 +55,9 @@ public class User implements Serializable {
 	@Column(name = "job")
 	@Enumerated(EnumType.STRING)
 	private Job job = Job.UNKNOWN;
+	
+	//optimistic locking
+	@UpdateTimestamp
+	@Version
+    private Instant lastUpdatedOn;
 }
