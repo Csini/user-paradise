@@ -23,7 +23,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "UserParadiseUser")
+@Table(name = "USER_PARADISE_USER")
 public class User implements Serializable {
 
 	@Id
@@ -47,7 +47,7 @@ public class User implements Serializable {
 	private String telephone;
 
 	@Column(name = "active")
-	private boolean active;
+	private Boolean active = false;
 	
 	@Column(name = "job")
 	@Enumerated(EnumType.STRING)
