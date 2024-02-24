@@ -12,13 +12,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr *ngFor="let user of users">
           <td>{{ user.fullname }}</td>
           <td>{{ user.job }}</td>
           <td>{{ user.activelabel }}</td>
           <td><button>Törlés</button><button>Módosítás</button></td>
         </tr>
+        <tr *ngIf="users.length === 0">
+          <td colspan="100" class="text-center">Nem találtunk egyetlen usert sem</td>
+        </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="100">
+
+            <div class="paginator-wrapper">
+                <button (click)="onPrevious()">Előző</button>
+                {{Page+1}}.Oldal
+                <button (click)="onNext()">Következő</button>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
+  <div>
+    <div>Összesen {{Length}} usert találtunk.</div>
+  </div>
+
+
 </section>

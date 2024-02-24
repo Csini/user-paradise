@@ -5,12 +5,13 @@ import java.util.stream.Collectors;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.spring.feladat.openapi.api.ApiApiDelegate;
 import hu.spring.feladat.openapi.model.User;
-import hu.spring.feladat.repository.UserRepository;
+import hu.spring.feladat.openapi.model.UserResponse;
 import hu.spring.feladat.service.UserService;
 import lombok.extern.log4j.Log4j2;
 
@@ -37,10 +38,35 @@ public class ApiDeledateController implements ApiApiDelegate {
 	}
 
 	@Override
-	public ResponseEntity<List<User>> readAllUser() {
+	public ResponseEntity<UserResponse> readAllUser(Integer page,
+	        Integer size, final Pageable pageable) {
+		
+//		log.info("size:" + size);
+//		log.info("page:" + page);
+//		
+//		log.info("pageable.size:" + pageable.getPageSize());
+//		log.info("pageable.page:" + pageable.getPageNumber());
+//		log.info("pageable.sort:" + pageable.getSort());
+		
+//		 - in: query
+//         name: sort
+//         schema:
+//           type: array
+//             items:
+//             type: string
+//         required: false
+//         description: Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+		
+//		pageable.setSort("fullname");
+		
+		UserResponse userResponse = new UserResponse();
+		
+		userResponse.setItems(service.getAllUsers(pageable).stream().map(user -> mapEntityToOpenapi(user)).collect(Collectors.toList()));
 
+		userResponse.setSize(service.getCountAllUsers());
+		
 		return ResponseEntity
-				.ok(service.getAllUsers().stream().map(user -> mapEntityToOpenapi(user)).collect(Collectors.toList()));
+				.ok(userResponse);
 	}
 
 	@Override

@@ -5,11 +5,11 @@ info:
   version: 1.0.0
   title: User Paradise API
   contact:
-    name: >-
+    name: 
       User Paradise Co.
 
 servers:
-  - url: http://localhost:9010/user/v1
+  - url: http://localhost:9010/user-business/v1
     description: Local environment (mainly for development)
 
 tags:
@@ -23,15 +23,27 @@ paths:
       tags: 
         - User
       operationId: readAllUser
+      x-spring-paginated: true
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+          description: Zero-based page index (0..N) default 0
+        - in: query
+          name: size
+          schema:
+            type: integer
+          required: false
+          description: The size of the page to be returned default 20
       responses:
         200:
           description: ""
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserResponse'
         400:
           $ref: '#/components/responses/BadRequestError'
         500:
@@ -122,10 +134,22 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    UserResponse:
+      type: object
+      required: [size, items]
+      properties:
+        size:
+          example: 1
+          type: integer
+          format: int64
+        items:
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
     User:
       description: Type “User”.
       type: object
-      required: [id, firstname, lastname, job]
+      required: [id, firstname, lastname, job, lastUpdatedOn]
       properties:
         id:
           type: integer
@@ -162,6 +186,9 @@ components:
         job:
           type: string
           enum: ["UNKNOWN", "KERTESZ", "HENTES", "PEK"]
+        lastUpdatedOn:
+          type: string
+          format: date-time
     Error:
       description: Error object
       example:

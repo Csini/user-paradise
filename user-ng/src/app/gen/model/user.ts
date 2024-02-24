@@ -24,6 +24,7 @@ export interface User {
     active?: boolean;
     activelabel?: string;
     job: User.JobEnum;
+    lastUpdatedOn: string;
 }
 export namespace User {
     export type JobEnum = 'UNKNOWN' | 'KERTESZ' | 'HENTES' | 'PEK';

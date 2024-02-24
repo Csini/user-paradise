@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, map, scan } from 'rxjs';
 import { sortByColumn } from 'src/app/common/sortbycolumn';
-import { User, UserService } from 'src/app/gen';
+import { User, UserResponse, UserService } from 'src/app/gen';
 
 @Component({
   selector: 'app-overview',
@@ -12,27 +12,29 @@ export class OverviewComponent implements OnInit {
 
   users: User[] = [];
 
-  users$: Observable<User[]>;
-  // make this a behavior subject instead
   sortedColumn$ = new BehaviorSubject<string>('');
 
+  Page: number = 0;
+  Size: number = 5;
+
+  Length: number = 100;
+
   constructor(private userService: UserService) {
-    // combine observables, use map operator to sort
-    this.users$ = combineLatest(this.userService.readAllUser(), this.sortDirection$)
-    .pipe(
-      map(([list, sort]) => !sort.col ? list : sortByColumn(list, sort.col, sort.dir))
-    );
+
+
 
   }
 
   ngOnInit(): void {
     console.log("component has been initialized!")
-    this.getUsers();
+    this.readSortedUsers();
   }
 
-  getUsers(): void {
-    this.userService.readAllUser()
-      .subscribe(users => this.users = users);
+  readSortedUsers(): void {
+     this.userService.readAllUser(this.Page, this.Size).subscribe(userResponse => {
+      this.users = userResponse.items;
+      this.Length = userResponse.size;
+    })
   }
 
   // the scan operator will let you keep track of the sort direction
@@ -47,5 +49,21 @@ export class OverviewComponent implements OnInit {
   // add this function to trigger subject
   sortOn(column: string) {
     this.sortedColumn$.next(column);
+  }
+
+  onPrevious(): void {
+    this.Page -= 1;
+    if (this.Page == -1) {
+      this.Page = 0;
+    }
+   this.readSortedUsers();
+  }
+
+  onNext(): void {
+
+    if (this.Page < ((this.Length / this.Size) - 1)) {
+      this.Page += 1;
+    }
+    this.readSortedUsers();
   }
 }

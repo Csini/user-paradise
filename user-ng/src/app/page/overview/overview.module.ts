@@ -13,7 +13,7 @@ import { OverviewComponent } from './overview.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ApiModule
+    ApiModule,
   ],
   providers: [],
   bootstrap: [OverviewComponent]

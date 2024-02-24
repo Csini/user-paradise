@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import hu.spring.feladat.entity.User;
@@ -29,8 +31,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAllUsers() {
-		return repository.findAll();
+	public Page<User> getAllUsers(final Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 	@Override
@@ -48,6 +50,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User saveUser(User user) {
 		return repository.saveAndFlush(user);
+	}
+
+	@Override
+	public long getCountAllUsers() {
+		return repository.count();
 	}
 
 }
