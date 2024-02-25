@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
   Page: number = 0;
   Size: number = 5;
 
-  Length: number = 100;
+  Length: number = -1;
 
   constructor(private userService: UserService) {
 

@@ -1,6 +1,6 @@
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job) VALUES (1, 'Indian', 'John', 'PEK');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname) VALUES (2, 'Mary', 'Jane');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, active) VALUES (3, 'Jakab','Gipsz', 'KERTESZ', TRUE);
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, active) VALUES (4, 'Péter','Fekete', 'PEK', false);
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, active) VALUES (5, 'Gábor','Gábor', TRUE);
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job) VALUES (6, 'Elek', 'Vezér', 'PEK');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (1,	'Indian',	'John', 	'PEK', 			'0',	'2024-02-12 16:12:50.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (2,	'Mary',		'Jane', 	'ISMERETLEN',	'1',	'2024-01-03 10:13:32.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (3,	'Jakab',	'Gipsz',	'KERTESZ', 		'0',	'2024-02-10 06:12:20.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (4,	'Péter',	'Fekete',	'PEK', 			'1',	'2024-02-11 08:43:11.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (5,	'Gábor',	'Gábor',	'ISMERETLEN',	'0',	'2024-02-10 06:12:20.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (6,	'Elek', 	'Vezér',	'PEK', 			'0',	'2024-02-25 09:59:32.224433856+01:00');

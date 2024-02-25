@@ -21,15 +21,15 @@ export interface User {
     fullname?: string;
     address?: string;
     telephone?: string;
-    active?: boolean;
+    status?: string;
     activelabel?: string;
     job: User.JobEnum;
     lastUpdatedOn: string;
 }
 export namespace User {
-    export type JobEnum = 'UNKNOWN' | 'KERTESZ' | 'HENTES' | 'PEK';
+    export type JobEnum = 'ISMERETLEN' | 'KERTESZ' | 'HENTES' | 'PEK';
     export const JobEnum = {
-        Unknown: 'UNKNOWN' as JobEnum,
+        Ismeretlen: 'ISMERETLEN' as JobEnum,
         Kertesz: 'KERTESZ' as JobEnum,
         Hentes: 'HENTES' as JobEnum,
         Pek: 'PEK' as JobEnum

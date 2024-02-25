@@ -27,6 +27,7 @@ public class UserJpaTest {
     public void testFindByFirstNameMethod_usingEntityManager() {
         User expectedUser = new User();
         expectedUser.setLastname("lastname");
+        expectedUser.setFirstname("firstname");
         
         entityManager.persist(expectedUser);
 		List<User> assertUserList = userRepository.findAll();

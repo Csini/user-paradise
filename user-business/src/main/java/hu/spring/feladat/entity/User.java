@@ -2,6 +2,7 @@ package hu.spring.feladat.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
@@ -14,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,10 +37,12 @@ public class User implements Serializable {
 
 	@Column(name = "firstname")
 	@Length(min = 2, max = 64)
+	@NotNull
 	private String firstname;
 
 	@Column(name = "lastname")
 	@Length(min = 2, max = 64)
+	@NotNull
 	private String lastname;
 
 	@Column(name = "address")
@@ -49,24 +53,31 @@ public class User implements Serializable {
 	@Length(min = 0, max = 128)
 	private String telephone;
 
-	@Column(name = "active")
-	private Boolean active = false;
+	/**
+	 * 0 active
+	 * 1 inactive
+	 */
+	@Column(name = "status")
+	@NotNull
+	private char status = 0;
 
 	@Column(name = "job")
 	@Enumerated(EnumType.STRING)
-	private Job job = Job.UNKNOWN;
+	@NotNull
+	private Job job = Job.ISMERETLEN;
 
 	// optimistic locking
 	@UpdateTimestamp
 	@Version
-	private Instant lastUpdatedOn;
+	@NotNull
+	private OffsetDateTime lastUpdatedOn;
 
 	public String getFullname() {
 		return firstname + " " + lastname;
 	}
 
 	public String getActivelabel() {
-		return (getActive() != null && getActive()) ? "igen" : "nem";
+		return (getStatus()=='0') ? "igen" : "nem";
 	}
 
 	@Override

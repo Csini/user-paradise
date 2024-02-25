@@ -177,15 +177,17 @@ components:
           example: "06-123-4567"
           minLength: 0
           maxLength: 128
-        active:
-          type: boolean
-          example: true
+        status:
+          type: string
+          example: 0
+          minLength: 0
+          maxLength: 1
         activelabel:
           type: string
           example: "igen"
         job:
           type: string
-          enum: ["UNKNOWN", "KERTESZ", "HENTES", "PEK"]
+          enum: ["ISMERETLEN", "KERTESZ", "HENTES", "PEK"]
         lastUpdatedOn:
           type: string
           format: date-time
