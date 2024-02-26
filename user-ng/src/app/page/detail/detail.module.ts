@@ -4,20 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from 'src/app/gen';
-import { OverviewComponent } from './overview.component';
-import { RouterModule } from '@angular/router';
+import { DetailComponent } from './detail.component';
 
 @NgModule({
   declarations: [
-    OverviewComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ApiModule,
-    RouterModule,
   ],
   providers: [],
-  bootstrap: [OverviewComponent]
+  bootstrap: [DetailComponent]
 })
-export class OverviewModule { }
+export class DetailModule { }

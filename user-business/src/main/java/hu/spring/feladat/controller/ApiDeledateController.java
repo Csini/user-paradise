@@ -87,10 +87,11 @@ public class ApiDeledateController implements ApiApiDelegate {
 
 		Integer id = user.getId();
 
-		// check if id is null
-		if (id != null && id != 0) {
-			throw new IllegalArgumentException("id must be empty");
+		// check if id is null or -1
+		if (id != null && id>-1) {
+			throw new IllegalArgumentException("id must be empty or -1");
 		}
+		user.setId(null);
 		hu.spring.feladat.entity.User userEntity = mapOpenapiToEntity(user);
 
 		return ResponseEntity.ok(mapEntityToOpenapi(service.saveUser(userEntity)));
