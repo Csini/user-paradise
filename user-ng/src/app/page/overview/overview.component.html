@@ -21,8 +21,8 @@
             <a [routerLink]="['/detail', user.id]">Módosítás</a>
           </td>
         </tr>
-        <tr *ngIf="users.length === 0">
-          <td colspan="100" class="text-center">Nem találtunk egyetlen usert sem</td>
+        <tr *ngIf="users.length <= 0">
+          <td colspan="100" class="text-center">Sajnos nem találtunk egyetlen usert sem</td>
         </tr>
       </tbody>
       <tfoot>
@@ -30,9 +30,9 @@
           <td colspan="100">
 
             <div class="paginator-wrapper">
-                <button (click)="onPrevious()">Előző</button>
+                <button (click)="onPrevious()">Előző (F6)</button>
                 {{Page+1}}.Oldal
-                <button (click)="onNext()">Következő</button>
+                <button (click)="onNext()">Következő (F7)</button>
             </div>
           </td>
         </tr>
@@ -44,9 +44,10 @@
   </div>
   <div>
     <div>
-      <a [routerLink]="['/detail', null]">Létrehozás</a>
+      <button (click)="onCreate()">Létrehozás (F2)</button>
     </div>
   </div>
 
 
 </section>
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

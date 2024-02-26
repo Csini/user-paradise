@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { AllowIn, KeyboardShortcutsComponent, ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { BehaviorSubject, Observable, combineLatest, map, scan } from 'rxjs';
 import { sortByColumn } from 'src/app/common/sortbycolumn';
 import { User, UserResponse, UserService } from 'src/app/gen';
@@ -19,11 +21,7 @@ export class OverviewComponent implements OnInit {
 
   Length: number = -1;
 
-  constructor(private userService: UserService) {
-
-
-
-  }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     console.log("component has been initialized!")
@@ -31,7 +29,7 @@ export class OverviewComponent implements OnInit {
   }
 
   readSortedUsers(): void {
-     this.userService.readAllUser(this.Page, this.Size).subscribe(userResponse => {
+    this.userService.readAllUser(this.Page, this.Size).subscribe(userResponse => {
       this.users = userResponse.items;
       this.Length = userResponse.size;
     })
@@ -56,7 +54,7 @@ export class OverviewComponent implements OnInit {
     if (this.Page == -1) {
       this.Page = 0;
     }
-   this.readSortedUsers();
+    this.readSortedUsers();
   }
 
   onNext(): void {
@@ -66,4 +64,41 @@ export class OverviewComponent implements OnInit {
     }
     this.readSortedUsers();
   }
+
+  onCreate(): void {
+    this.router.navigate(['/detail', -1]);
+  }
+
+  shortcuts: ShortcutInput[] = [];
+
+  ngAfterViewInit(): void {
+    this.shortcuts.push(
+      {
+        key: "f2",
+        command: (output: ShortcutEventOutput) => {
+          //console.log(output);
+          this.onCreate();
+        },
+        preventDefault: true
+      },
+      {
+        key: "f6",
+        command: (output: ShortcutEventOutput) => {
+          //console.log(output);
+          this.onPrevious();
+        },
+        preventDefault: true
+      },
+      {
+        key: "f7",
+        command: (output: ShortcutEventOutput) => {
+          //console.log(output);
+          this.onNext();
+        },
+        preventDefault: true
+      },
+    );
+
+  }
+
 }

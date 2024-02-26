@@ -1,2 +1,38 @@
 <p>detail works!</p>
 {{user | json}}
+
+<!--
+<div>
+  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit()">
+      <div class="form-row" *ngFor="let fields of AddressInfo.controls; let i = index" >
+          <div class="form-group col-md-3" >
+              <label for="password"><b>Street Address</b></label>
+              <input type="text" class="form-control" placeholder="Street Address" name="SA" formControlName="streetAddress" />
+            </div>
+            <div class="form-group col-md-3" >
+              <label for="password"><b>City</b></label>
+              <input type="text" class="form-control" placeholder="City" name="city" formControlName="city" />
+            </div>
+            <div class="form-group col-md-3" >
+              <label for="password"><b>State</b></label>
+              <input type="text" class="form-control" placeholder="State" name="state" formControlName="state" />
+            </div>
+      </div>
+      <br/>
+   <button type="submit"  class="btn btn-primary">Submit</button>
+  </form>
+  <br/>
+  <button type = "button" class="btn btn-primary" (click)="addNewAddress()" >Add New Address</button>
+</div>
+-->
+
+<div>
+  <div>
+    <button (click)="onSave()">Mentés (F2)</button>
+  </div>
+  <div>
+    <button (click)="onCancel()">Mégsem (F3)</button>
+  </div>
+</div>
+
+<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
