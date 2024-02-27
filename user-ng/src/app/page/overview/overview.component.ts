@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AllowIn, KeyboardShortcutsComponent, ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { BehaviorSubject, Observable, combineLatest, map, scan } from 'rxjs';
 import { sortByColumn } from 'src/app/common/sortbycolumn';
@@ -21,11 +21,17 @@ export class OverviewComponent implements OnInit {
 
   Length: number = -1;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private activatedroute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    console.log("component has been initialized!")
-    this.readSortedUsers();
+    console.log("component has been initialized!");
+    this.activatedroute.paramMap.subscribe(paramMap => {
+      this.readSortedUsers();
+    });
   }
 
   readSortedUsers(): void {
@@ -66,7 +72,7 @@ export class OverviewComponent implements OnInit {
   }
 
   onCreate(): void {
-    this.router.navigate(['/detail', -1]);
+    this.router.navigate(['/detail', 'new']);
   }
 
   shortcuts: ShortcutInput[] = [];

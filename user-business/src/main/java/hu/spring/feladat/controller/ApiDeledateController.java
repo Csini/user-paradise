@@ -78,8 +78,12 @@ public class ApiDeledateController implements ApiApiDelegate {
 
 		// check if user exists
 		hu.spring.feladat.entity.User userEntity = service.getUser(id);
+		
+		log.info("entity:" + userEntity.getLastUpdatedOn());
+		log.info("request: " + user.getLastUpdatedOn());
+		log.info(userEntity.getLastUpdatedOn().equals(user.getLastUpdatedOn()));
 
-		return ResponseEntity.ok(mapEntityToOpenapi(service.saveUser(userEntity)));
+		return ResponseEntity.ok(mapEntityToOpenapi(service.saveUser(mapOpenapiToEntity(user))));
 	}
 
 	@Override

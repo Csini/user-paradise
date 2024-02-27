@@ -26,13 +26,68 @@
 </div>
 -->
 
-<div>
+<form [formGroup]="detailForm" (ngSubmit)="onSave(detailForm)" #ngForm="ngForm">
   <div>
-    <button (click)="onSave()">Mentés (F2)</button>
+    <label class="control-label required">
+      Keresztnév:
+      <input formControlName="firstname" placeholder="Keresztnév" id="firstname">
+    </label>
+    <div *ngIf="detailForm.get('firstname')?.invalid && ngForm.submitted">
+      Legalább 2 karakter és legfeljebb 64 karakter lehet!
+    </div>
   </div>
   <div>
-    <button (click)="onCancel()">Mégsem (F3)</button>
+    <label class="control-label required">
+      Vezetéknév:
+      <input formControlName="lastname" placeholder="Vezetéknév" id="lastname">
+    </label>
+    <div *ngIf="detailForm.get('lastname')?.invalid && ngForm.submitted">
+      Legalább 2 karakter és legfeljebb 64 karakter lehet!
+    </div>
   </div>
-</div>
+  <div>
+    <label class="control-label required">
+      Cím:
+      <input formControlName="address" placeholder="Cím" id="address">
+    </label>
+    <div *ngIf="detailForm.get('address')?.invalid && ngForm.submitted">
+      Legfeljebb 128 karakter lehet!
+    </div>
+  </div>
+  <div>
+    <label class="control-label required">
+      Telefonszám:
+      <input formControlName="telephone" placeholder="Telefonszám" id="telephone">
+    </label>
+    <div *ngIf="detailForm.get('telephone')?.invalid && ngForm.submitted">
+      Legfeljebb 128 karakter lehet!
+    </div>
+  </div>
+  <div>
+    <label class="control-label required">
+      Foglalkozás:
+      <select formControlName="job" id="job">
+        <option *ngFor="let j of jobs | keyvalue" [ngValue]="j.value">{{j.key}}</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label class="control-label required">
+      Aktív:
+      <input  type="checkbox" formControlName="status"  id="status">
+    </label>
+  </div>
 
-<ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
+
+
+  <div>
+    <div>
+      <button type="submit">Mentés (F2)</button>
+    </div>
+    <div>
+      <button (click)="onCancel()">Mégsem (F3)</button>
+    </div>
+  </div>
+
+</form>
+  <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

@@ -208,7 +208,6 @@
 
 							<!-- ... lot of parameters and configuration omitted here, look in 
 								the original file ... -->
-
 							<!-- configuration -->
 							<configOptions>
 								<useJakartaEe>true</useJakartaEe>
@@ -224,6 +223,12 @@
 								<!-- <additionalModelTypeAnnotations>@lombok.Data @lombok.NoArgsConstructor 
 									@lombok.AllArgsConstructor</additionalModelTypeAnnotations> -->
 							</configOptions>
+							<typeMappings>
+								<typeMapping>string+date-time=LocalDateTime</typeMapping>
+							</typeMappings>
+							<importMappings>
+								<importMapping>LocalDateTime=java.time.LocalDateTime</importMapping>
+							</importMappings>
 						</configuration>
 					</execution>
 				</executions>

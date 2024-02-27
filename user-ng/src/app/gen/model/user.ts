@@ -21,10 +21,10 @@ export interface User {
     fullname?: string;
     address?: string;
     telephone?: string;
-    status?: string;
+    status: string;
     activelabel?: string;
     job: User.JobEnum;
-    lastUpdatedOn: string;
+    lastUpdatedOn?: string;
 }
 export namespace User {
     export type JobEnum = 'ISMERETLEN' | 'KERTESZ' | 'HENTES' | 'PEK';

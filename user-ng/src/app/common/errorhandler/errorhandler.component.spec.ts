@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorhandlerComponent } from './errorhandler.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ErrorhandlerComponent', () => {
   let component: ErrorhandlerComponent;
@@ -8,6 +9,7 @@ describe('ErrorhandlerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([]),],
       declarations: [ErrorhandlerComponent]
     });
     fixture = TestBed.createComponent(ErrorhandlerComponent);

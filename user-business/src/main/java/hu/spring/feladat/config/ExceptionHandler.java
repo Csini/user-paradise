@@ -52,8 +52,7 @@ public class ExceptionHandler extends ResponseStatusExceptionHandler {
     }
 
     public static void logError(Exception exception, HttpStatus statusCode){
-        log.error("Exception Cause Message : {}", exception.getMessage());
-        log.error("Exception Localised Message : {}", exception.getLocalizedMessage());
+        log.error("Exception Cause Message : {}", exception);
         log.error("Returned Status: {}", statusCode.MULTI_STATUS.value());
     }
 }

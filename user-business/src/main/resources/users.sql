@@ -1,6 +1,6 @@
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (1,	'Indian',	'John', 	'PEK', 			'0',	'2024-02-12 16:12:50.224433856+01:00');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (2,	'Mary',		'Jane', 	'ISMERETLEN',	'1',	'2024-01-03 10:13:32.224433856+01:00');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (3,	'Jakab',	'Gipsz',	'KERTESZ', 		'0',	'2024-02-10 06:12:20.224433856+01:00');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (4,	'Péter',	'Fekete',	'PEK', 			'1',	'2024-02-11 08:43:11.224433856+01:00');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (5,	'Gábor',	'Gábor',	'ISMERETLEN',	'0',	'2024-02-10 06:12:20.224433856+01:00');
-INSERT INTO USER_PARADISE_USER (id, firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (6,	'Elek', 	'Vezér',	'PEK', 			'0',	'2024-02-25 09:59:32.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Indian',	'John', 	'PEK', 			'0',	'2024-02-12 16:12:50.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Mary',		'Jane', 	'ISMERETLEN',	'1',	'2024-01-03 10:13:32.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Jakab',	'Gipsz',	'KERTESZ', 		'0',	'2024-02-10 06:12:20.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Péter',	'Fekete',	'PEK', 			'1',	'2024-02-11 08:43:11.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Gábor',	'Gábor',	'ISMERETLEN',	'0',	'2024-02-10 06:12:20.224433856+01:00');
+INSERT INTO USER_PARADISE_USER (firstname, lastname, job, status, LAST_UPDATED_ON) VALUES (	'Elek', 	'Vezér',	'PEK', 			'0',	'2024-02-25 09:59:32.224433856+01:00');

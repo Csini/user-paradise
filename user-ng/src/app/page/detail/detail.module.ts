@@ -7,6 +7,7 @@ import { ApiModule } from 'src/app/gen';
 import { DetailComponent } from './detail.component';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     ApiModule,
     RouterModule,
     KeyboardShortcutsModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [DetailComponent]

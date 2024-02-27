@@ -2,6 +2,7 @@ package hu.spring.feladat.entity;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
@@ -32,7 +34,7 @@ import lombok.Setter;
 public class User implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "firstname")
@@ -70,7 +72,7 @@ public class User implements Serializable {
 	@UpdateTimestamp
 	@Version
 	@NotNull
-	private OffsetDateTime lastUpdatedOn;
+	private LocalDateTime lastUpdatedOn;
 
 	public String getFullname() {
 		return firstname + " " + lastname;
