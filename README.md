@@ -4,7 +4,7 @@ mini springboot+angular app
 to build the spring boot apps just run 
 ```mvn clean install```
 
-compiled angular app is stored under user-ui/src/main/static
+compiled angular app is stored under ```user-ui/src/main/resources/static```
 
 to build a new fresh runnable from the user-ng spa run
 ```mvn clean install -PbuildNg```
@@ -22,7 +22,7 @@ to start frontend in dev mode on port 4200:
 ```ng serve```
 
 api documentation:
-https://github.com/Csini/user-paradise/blob/main/user-api/doc/index.html
+```user-api/doc/index.html```
 or
 http://localhost:9010/swagger-ui/index.html
 
