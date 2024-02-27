@@ -12,9 +12,17 @@
 	<modules>
 		<module>user-api</module>
 		<module>user-business</module>
-		<module>user-ng</module>
 		<module>user-ui</module>
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>buildNg</id>
+			<modules>
+				<module>user-ng</module>
+			</modules>
+		</profile>
+	</profiles>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

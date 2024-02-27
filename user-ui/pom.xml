@@ -25,13 +25,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>hu.spring.feladat</groupId>
-			<artifactId>user-ng</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<type>tar.gz</type>
-		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>buildNg</id>
+			<dependencies>
+				<dependency>
+					<groupId>hu.spring.feladat</groupId>
+					<artifactId>user-ng</artifactId>
+					<version>1.0.0-SNAPSHOT</version>
+					<type>tar.gz</type>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
