@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllowIn, KeyboardShortcutsComponent, ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { BehaviorSubject, Observable, combineLatest, map, scan } from 'rxjs';
-import { sortByColumn } from 'src/app/common/sortbycolumn';
 import { User, UserResponse, UserService } from 'src/app/gen';
 
 @Component({
@@ -18,6 +17,7 @@ export class OverviewComponent implements OnInit {
 
   Page: number = 0;
   Size: number = 5;
+  Sort: Array<string> = ['id', 'asc'];
 
   Length: number = -1;
 
@@ -35,24 +35,18 @@ export class OverviewComponent implements OnInit {
   }
 
   readSortedUsers(): void {
-    this.userService.readAllUser(this.Page, this.Size).subscribe(userResponse => {
+    this.userService.readAllUser(this.Page, this.Size, this.Sort).subscribe(userResponse => {
       this.users = userResponse.items;
       this.Length = userResponse.size;
     })
   }
 
-  // the scan operator will let you keep track of the sort direction
-  sortDirection$ = this.sortedColumn$.pipe(
-    scan<string, { col: string, dir: string }>((sort, val) => {
-      return sort.col === val
-        ? { col: val, dir: sort.dir === 'desc' ? 'asc' : 'desc' }
-        : { col: val, dir: 'desc' }
-    }, { dir: 'desc', col: '' })
-  )
-
-  // add this function to trigger subject
   sortOn(column: string) {
-    this.sortedColumn$.next(column);
+    var dir = (this.Sort[1] === 'desc') ? 'asc' : 'desc';
+
+    this.Sort[0] = column;
+    this.Sort[1] = dir;
+    this.readSortedUsers();
   }
 
   onPrevious(): void {

@@ -362,7 +362,9 @@ font-style: italic;
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Zero-based page index (0..N) default 0 default: null </div><div class="param">size (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The size of the page to be returned default 20 default: null </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The size of the page to be returned default 20 default: null </div><div class="param">sort[] (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Sorting criteria in the format property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. default: null </div>
     </div>  <!-- field-items -->
 
 
@@ -618,11 +620,11 @@ font-style: italic;
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
 <div class="param">firstname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">lastname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">fullname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fullname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> readonly concatenate from firstname and lastname </div>
 <div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">telephone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">activelabel (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">activelabel (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> readonly label to use </div>
 <div class="param">job </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">ISMERETLEN</div><div class="param-enum">KERTESZ</div><div class="param-enum">HENTES</div><div class="param-enum">PEK</div>

@@ -37,6 +37,14 @@ paths:
             type: integer
           required: false
           description: The size of the page to be returned default 20
+        - in: query
+          name: sort[]
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Sorting criteria in the format property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
       responses:
         200:
           description: ""
@@ -167,6 +175,7 @@ components:
         fullname:
           type: string
           example: "Tom Selec"
+          description: readonly concatenate from firstname and lastname
         address:
           type: string
           example: "1053 Budapest Álom utca 2."
@@ -185,6 +194,7 @@ components:
         activelabel:
           type: string
           example: "igen"
+          description: readonly label to use
         job:
           type: string
           enum: ["ISMERETLEN", "KERTESZ", "HENTES", "PEK"]

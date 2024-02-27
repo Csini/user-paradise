@@ -1,10 +1,13 @@
 package hu.spring.feladat.controller;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,27 +40,37 @@ public class ApiDeledateController implements ApiApiDelegate {
 	}
 
 	@Override
-	public ResponseEntity<UserResponse> readAllUser(Integer page, Integer size, final Pageable pageable) {
+	public ResponseEntity<UserResponse> readAllUser(Integer page, Integer size, List<String> sort,
+			final Pageable pageable) {
 
-//		log.info("size:" + size);
-//		log.info("page:" + page);
-//		
+		log.debug("size:" + size);
+		log.debug("page:" + page);
+		log.debug("sort:" + sort);
+
 //		log.info("pageable.size:" + pageable.getPageSize());
 //		log.info("pageable.page:" + pageable.getPageNumber());
 //		log.info("pageable.sort:" + pageable.getSort());
 
-//		 - in: query
-//         name: sort
-//         schema:
-//           type: array
-//             items:
-//             type: string
-//         required: false
-//         description: Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+		Sort s;
+		String column = sort.get(0);
 
-//		pageable.setSort("fullname");
+		if ("fullname".equals(column)) {
+			if ("desc".equals(sort.get(1))) {
+				s = Sort.by(Sort.Order.desc("lastname"), Sort.Order.desc("firstname"));
+			} else {
+				s = Sort.by(Sort.Order.asc("lastname"), Sort.Order.asc("firstname"));
+			}
+		} else {
+			if ("desc".equals(sort.get(1))) {
+				s = Sort.by(column).descending();
+			} else {
+				s = Sort.by(column).ascending();
+			}
+		}
 
-		UserResponse userResponse = new UserResponse(service.getCountAllUsers(), service.getAllUsers(pageable).stream()
+		Pageable withsort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), s);
+
+		UserResponse userResponse = new UserResponse(service.getCountAllUsers(), service.getAllUsers(withsort).stream()
 				.map(user -> mapEntityToOpenapi(user)).collect(Collectors.toList()));
 
 		return ResponseEntity.ok(userResponse);
@@ -78,7 +91,7 @@ public class ApiDeledateController implements ApiApiDelegate {
 
 		// check if user exists
 		hu.spring.feladat.entity.User userEntity = service.getUser(id);
-		
+
 		log.info("entity:" + userEntity.getLastUpdatedOn());
 		log.info("request: " + user.getLastUpdatedOn());
 		log.info(userEntity.getLastUpdatedOn().equals(user.getLastUpdatedOn()));
@@ -92,7 +105,7 @@ public class ApiDeledateController implements ApiApiDelegate {
 		Integer id = user.getId();
 
 		// check if id is null or -1
-		if (id != null && id>-1) {
+		if (id != null && id > -1) {
 			throw new IllegalArgumentException("id must be empty or -1");
 		}
 		user.setId(null);

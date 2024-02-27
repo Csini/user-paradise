@@ -75,7 +75,7 @@ public class User implements Serializable {
 	private LocalDateTime lastUpdatedOn;
 
 	public String getFullname() {
-		return firstname + " " + lastname;
+		return lastname + " " + firstname;
 	}
 
 	public String getActivelabel() {

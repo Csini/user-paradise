@@ -18,10 +18,16 @@ export interface User {
     id: number;
     firstname: string;
     lastname: string;
+    /**
+     * readonly concatenate from firstname and lastname
+     */
     fullname: string;
     address?: string;
     telephone?: string;
     status: string;
+    /**
+     * readonly label to use
+     */
     activelabel?: string;
     job: User.JobEnum;
     lastUpdatedOn?: string;
