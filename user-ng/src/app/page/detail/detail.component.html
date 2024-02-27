@@ -71,7 +71,7 @@
       </select>
     </label>
   </div>
-  <div>
+  <div *ngIf="!isNew()">
     <label class="control-label required">
       Aktív:
       <input  type="checkbox" formControlName="status"  id="status">
@@ -83,6 +83,9 @@
   <div>
     <div>
       <button type="submit">Mentés (F2)</button>
+    </div>
+    <div *ngIf="!isNew()">
+      <button (click)="onDelete()">Törlés (F8)</button>
     </div>
     <div>
       <button (click)="onCancel()">Mégsem (F3)</button>

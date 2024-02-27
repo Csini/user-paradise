@@ -75,6 +75,20 @@ export class OverviewComponent implements OnInit {
     this.router.navigate(['/detail', 'new']);
   }
 
+  onDelete(id: number, fullname: string | undefined): void {
+
+    if (confirm("Biztosan törölni akarja a '" + fullname + ' usert?')) {
+      this.userService.deleteUser(id).subscribe(() => {
+        //console.log("user deleted");
+        this.readSortedUsers();
+      });
+    }
+  }
+
+  onUpdate(id: number): void {
+    this.router.navigate(['/detail', id]);
+  }
+
   shortcuts: ShortcutInput[] = [];
 
   ngAfterViewInit(): void {

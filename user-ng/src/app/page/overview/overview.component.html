@@ -17,8 +17,8 @@
           <td>{{ user.job }}</td>
           <td>{{ user.activelabel }}</td>
           <td>
-            <button>Törlés</button><button>Módosítás</button>
-            <a [routerLink]="['/detail', user.id]">Módosítás</a>
+            <button (click)="onDelete(user.id, user.fullname)">Törlés</button>
+            <button (click)="onUpdate(user.id)">Módosítás</button>
           </td>
         </tr>
         <tr *ngIf="users.length <= 0">

@@ -139,6 +139,16 @@ export class DetailComponent implements OnInit {
     this.router.navigate(['/overview']);
   }
 
+  onDelete(): void {
+
+    if (confirm("Biztosan törölni akarja a '" + this.user.fullname + ' usert?')) {
+      this.userService.deleteUser(this.user.id).subscribe(() => {
+        //console.log("user deleted");
+        this.router.navigate(['/overview']);
+      });
+    }
+  }
+
   shortcuts: ShortcutInput[] = [];
 
   ngAfterViewInit(): void {
@@ -156,6 +166,16 @@ export class DetailComponent implements OnInit {
         command: (output: ShortcutEventOutput) => {
           //console.log(output);
           this.onCancel();
+        },
+        preventDefault: true
+      },
+      {
+        key: "f8",
+        command: (output: ShortcutEventOutput) => {
+          //console.log(output);
+          if(!this.isNew()){
+            this.onDelete();
+          }
         },
         preventDefault: true
       },
