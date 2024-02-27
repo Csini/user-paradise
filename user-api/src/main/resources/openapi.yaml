@@ -149,7 +149,7 @@ components:
     User:
       description: Type “User”.
       type: object
-      required: [id, firstname, lastname, status, job]
+      required: [id, firstname, lastname, status, job, fullname]
       properties:
         id:
           type: integer

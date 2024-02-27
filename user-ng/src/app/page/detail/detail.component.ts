@@ -7,7 +7,7 @@ import { ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'paradise-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit {
     id: -1,
     firstname: '',
     lastname: '',
+    fullname: '',
     status: '0',
     job: 'ISMERETLEN',
     lastUpdatedOn: ''
@@ -52,6 +53,7 @@ export class DetailComponent implements OnInit {
           id: -1,
           firstname: '',
           lastname: '',
+          fullname: '',
           status: '0',
           job: 'ISMERETLEN',
           lastUpdatedOn: ''
@@ -139,13 +141,10 @@ export class DetailComponent implements OnInit {
     this.router.navigate(['/overview']);
   }
 
-  onDelete(): void {
+  onDelete(confirmed: boolean): void {
 
-    if (confirm("Biztosan törölni akarja a '" + this.user.fullname + ' usert?')) {
-      this.userService.deleteUser(this.user.id).subscribe(() => {
-        //console.log("user deleted");
-        this.router.navigate(['/overview']);
-      });
+    if(confirmed){
+      this.router.navigate(['/overview']);
     }
   }
 
@@ -166,16 +165,6 @@ export class DetailComponent implements OnInit {
         command: (output: ShortcutEventOutput) => {
           //console.log(output);
           this.onCancel();
-        },
-        preventDefault: true
-      },
-      {
-        key: "f8",
-        command: (output: ShortcutEventOutput) => {
-          //console.log(output);
-          if(!this.isNew()){
-            this.onDelete();
-          }
         },
         preventDefault: true
       },

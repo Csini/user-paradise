@@ -6,7 +6,7 @@ import { sortByColumn } from 'src/app/common/sortbycolumn';
 import { User, UserResponse, UserService } from 'src/app/gen';
 
 @Component({
-  selector: 'app-overview',
+  selector: 'paradise-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
@@ -75,13 +75,10 @@ export class OverviewComponent implements OnInit {
     this.router.navigate(['/detail', 'new']);
   }
 
-  onDelete(id: number, fullname: string | undefined): void {
+  onDelete(confirmed:boolean): void {
 
-    if (confirm("Biztosan törölni akarja a '" + fullname + ' usert?')) {
-      this.userService.deleteUser(id).subscribe(() => {
-        //console.log("user deleted");
-        this.readSortedUsers();
-      });
+    if (confirmed) {
+      this.readSortedUsers();
     }
   }
 

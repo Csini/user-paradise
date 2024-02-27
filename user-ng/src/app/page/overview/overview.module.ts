@@ -7,6 +7,7 @@ import { ApiModule } from 'src/app/gen';
 import { OverviewComponent } from './overview.component';
 import { RouterModule } from '@angular/router';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
+import { ParadiseCommonModule } from 'src/app/common/common.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,8 @@ import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
     HttpClientModule,
     ApiModule,
     RouterModule,
-     // module for ng-keyboard-shortcuts
-     KeyboardShortcutsModule.forRoot(),
+    KeyboardShortcutsModule.forRoot(),
+    ParadiseCommonModule,
   ],
   providers: [],
   bootstrap: [OverviewComponent]

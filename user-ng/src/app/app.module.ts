@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverviewModule } from './page/overview/overview.module';
 import { DetailModule } from './page/detail/detail.module';
-import { ErrorhandlerModule } from './common/errorhandler/errorhandler.module';
+import { ErrorhandlerModule } from './page/errorhandler/errorhandler.module';
 import { RequestInterceptor } from './common/request.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ParadiseCommonModule } from './common/common.module';
 
 
 @NgModule({

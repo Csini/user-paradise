@@ -85,7 +85,7 @@
       <button type="submit">Mentés (F2)</button>
     </div>
     <div *ngIf="!isNew()">
-      <button (click)="onDelete()">Törlés (F8)</button>
+      <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" (isConfirmed)="onDelete($event)">Törlés (F8)</paradise-deletebutton>
     </div>
     <div>
       <button (click)="onCancel()">Mégsem (F3)</button>

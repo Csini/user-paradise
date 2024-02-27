@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable, EMPTY } from 'rxjs';
 
 @Component({
-  selector: 'app-errorhandler',
+  selector: 'paradise-errorhandler',
   templateUrl: './errorhandler.component.html',
   styleUrls: ['./errorhandler.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

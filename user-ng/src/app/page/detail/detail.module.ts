@@ -8,6 +8,7 @@ import { DetailComponent } from './detail.component';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ParadiseCommonModule } from 'src/app/common/common.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     KeyboardShortcutsModule.forRoot(),
     ReactiveFormsModule,
+    ParadiseCommonModule,
   ],
   providers: [],
   bootstrap: [DetailComponent]

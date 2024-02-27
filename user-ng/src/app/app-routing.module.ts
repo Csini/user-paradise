@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './page/overview/overview.component';
 import { DetailComponent } from './page/detail/detail.component';
-import { ErrorhandlerComponent } from './common/errorhandler/errorhandler.component';
+import { ErrorhandlerComponent } from './page/errorhandler/errorhandler.component';
 import { ErrorResolver } from './common/error.resolver';
 
 const routes: Routes = [

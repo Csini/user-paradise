@@ -12,13 +12,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users; index as i">
           <td>{{ user.fullname }}</td>
           <td>{{ user.job }}</td>
           <td>{{ user.activelabel }}</td>
           <td>
-            <button (click)="onDelete(user.id, user.fullname)">Törlés</button>
-            <button (click)="onUpdate(user.id)">Módosítás</button>
+            <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" (isConfirmed)="onDelete($event)">Törlés (shift+ctrl + {{i+1}})</paradise-deletebutton>
+            <button (click)="onUpdate(user.id)">Módosítás (ctrl + {{i+1}})</button>
           </td>
         </tr>
         <tr *ngIf="users.length <= 0">
