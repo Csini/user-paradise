@@ -1,10 +1,10 @@
 <ng-container *ngIf="data | async as error">
   <div class="center-text">
-    <h1>{{ error.code }}</h1>
+    <h1>{{ error.code }}-as hiba történt</h1>
     <hr>
     <h3>{{ error.message }}</h3>
-    <div class="mylink">
-      <button (click)="onRefresh()">Oldal újratöltése (F2)</button>
+    <div class="button-wrapper">
+      <button (click)="onRefresh()">Oldal újratöltése<br/>(F2)</button>
     </div>
   </div>
   <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

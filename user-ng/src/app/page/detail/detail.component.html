@@ -1,96 +1,70 @@
-<p>detail works!</p>
-{{user | json}}
+<div class="container">
+  <form [formGroup]="detailForm" (ngSubmit)="onSave(detailForm)" #ngForm="ngForm">
+    <div class="formelements">
+      <div class="row col-100">
+        <label class="control-label required" for="firstname">
+          Keresztnév:
+        </label>
 
-<!--
-<div>
-  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onSubmit()">
-      <div class="form-row" *ngFor="let fields of AddressInfo.controls; let i = index" >
-          <div class="form-group col-md-3" >
-              <label for="password"><b>Street Address</b></label>
-              <input type="text" class="form-control" placeholder="Street Address" name="SA" formControlName="streetAddress" />
-            </div>
-            <div class="form-group col-md-3" >
-              <label for="password"><b>City</b></label>
-              <input type="text" class="form-control" placeholder="City" name="city" formControlName="city" />
-            </div>
-            <div class="form-group col-md-3" >
-              <label for="password"><b>State</b></label>
-              <input type="text" class="form-control" placeholder="State" name="state" formControlName="state" />
-            </div>
+        <input type="text" formControlName="firstname" placeholder="Keresztnév" id="firstname">
+
+        <div *ngIf="detailForm.get('firstname')?.invalid && ngForm.submitted" class="error-message">
+          Legalább 2 karakter és legfeljebb 64 karakter lehet!
+        </div>
       </div>
-      <br/>
-   <button type="submit"  class="btn btn-primary">Submit</button>
+      <div class="row col-100">
+        <label class="control-label required" for="lastname">
+          Vezetéknév:
+        </label>
+
+        <input type="text" formControlName="lastname" placeholder="Vezetéknév" id="lastname">
+
+        <div *ngIf="detailForm.get('lastname')?.invalid && ngForm.submitted" class="error-message">
+          Legalább 2 karakter és legfeljebb 64 karakter lehet!
+        </div>
+      </div>
+      <div class="row col-100">
+        <label class="control-label" for="address">
+          Cím:
+        </label>
+        <input type="text" formControlName="address" placeholder="Cím" id="address">
+        <div *ngIf="detailForm.get('address')?.invalid && ngForm.submitted" class="error-message">
+          Legfeljebb 128 karakter lehet!
+        </div>
+      </div>
+      <div class="row col-100">
+        <label class="control-label" for="telephone">
+          Telefonszám:
+        </label>
+        <input type="text" formControlName="telephone" placeholder="Telefonszám" id="telephone">
+        <div *ngIf="detailForm.get('telephone')?.invalid && ngForm.submitted" class="error-message">
+          Legfeljebb 128 karakter lehet!
+        </div>
+      </div>
+      <div class="row col-100">
+        <label class="control-label required" for="job">
+          Foglalkozás:
+        </label>
+        <select formControlName="job" id="job">
+          <option *ngFor="let j of jobs | keyvalue" [ngValue]="j.value">{{j.key}}</option>
+        </select>
+      </div>
+      <div class="row col-100" *ngIf="!isNew()">
+        <label class="control-label required" for="status">
+          Aktív:
+        </label>
+        <input type="checkbox" formControlName="status" id="status">
+      </div>
+
+
+
+      <div class="buttons">
+        <button (click)="onCancel()">Mégsem<br />(F3)</button>
+        <paradise-deletebutton *ngIf="!isNew()" [fullname]="user.fullname" [id]="user.id" keyboardkey="f8"
+          (isConfirmed)="onDelete($event)">Törlés<br />(F8)</paradise-deletebutton>
+        <button type="submit" class="primary">Mentés<br />(F2)</button>
+      </div>
+    </div>
+    <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
   </form>
-  <br/>
-  <button type = "button" class="btn btn-primary" (click)="addNewAddress()" >Add New Address</button>
 </div>
--->
-
-<form [formGroup]="detailForm" (ngSubmit)="onSave(detailForm)" #ngForm="ngForm">
-  <div>
-    <label class="control-label required">
-      Keresztnév:
-      <input formControlName="firstname" placeholder="Keresztnév" id="firstname">
-    </label>
-    <div *ngIf="detailForm.get('firstname')?.invalid && ngForm.submitted">
-      Legalább 2 karakter és legfeljebb 64 karakter lehet!
-    </div>
-  </div>
-  <div>
-    <label class="control-label required">
-      Vezetéknév:
-      <input formControlName="lastname" placeholder="Vezetéknév" id="lastname">
-    </label>
-    <div *ngIf="detailForm.get('lastname')?.invalid && ngForm.submitted">
-      Legalább 2 karakter és legfeljebb 64 karakter lehet!
-    </div>
-  </div>
-  <div>
-    <label class="control-label required">
-      Cím:
-      <input formControlName="address" placeholder="Cím" id="address">
-    </label>
-    <div *ngIf="detailForm.get('address')?.invalid && ngForm.submitted">
-      Legfeljebb 128 karakter lehet!
-    </div>
-  </div>
-  <div>
-    <label class="control-label required">
-      Telefonszám:
-      <input formControlName="telephone" placeholder="Telefonszám" id="telephone">
-    </label>
-    <div *ngIf="detailForm.get('telephone')?.invalid && ngForm.submitted">
-      Legfeljebb 128 karakter lehet!
-    </div>
-  </div>
-  <div>
-    <label class="control-label required">
-      Foglalkozás:
-      <select formControlName="job" id="job">
-        <option *ngFor="let j of jobs | keyvalue" [ngValue]="j.value">{{j.key}}</option>
-      </select>
-    </label>
-  </div>
-  <div *ngIf="!isNew()">
-    <label class="control-label required">
-      Aktív:
-      <input  type="checkbox" formControlName="status"  id="status">
-    </label>
-  </div>
-
-
-
-  <div>
-    <div>
-      <button type="submit">Mentés (F2)</button>
-    </div>
-    <div *ngIf="!isNew()">
-      <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" keyboardkey="f8" (isConfirmed)="onDelete($event)">Törlés (F8)</paradise-deletebutton>
-    </div>
-    <div>
-      <button (click)="onCancel()">Mégsem (F3)</button>
-    </div>
-  </div>
-
-</form>
-  <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have as title 'user-ng'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('user-ng');
+    expect(app.version).toEqual('1.0.0');
   });
 
   /*

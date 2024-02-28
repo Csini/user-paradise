@@ -1,37 +1,41 @@
-<p>{{users | json}}</p>
 <section class="live-updates-wrapper">
   <div class="table-wrapper">
     <table class="user-table">
+      <caption>Összes user ({{Length}})</caption>
       <thead>
         <tr>
-          <th><a (click)="sortOn('fullname')">Név</a></th>
-          <th><a (click)="sortOn('job')">Foglalkozás</a></th>
-          <th><a (click)="sortOn('status')">Aktív</a></th>
+          <th><a (click)="sortOn('fullname')" style="cursor: pointer">Név</a></th>
+          <th><a (click)="sortOn('job')" style="cursor: pointer">Foglalkozás</a></th>
+          <th><a (click)="sortOn('status')" style="cursor: pointer">Aktív</a></th>
           <th>Műveletek</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of users; index as i">
-          <td>{{ user.fullname }}</td>
-          <td>{{ user.job }}</td>
-          <td>{{ user.activelabel }}</td>
-          <td>
-            <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" [keyboardkey]="'ctrl + shift + '+user.id%Size" (isConfirmed)="onDelete($event)">Törlés (ctrl + shift + {{i+1}})</paradise-deletebutton>
-            <button (click)="onUpdate(user.id)">Módosítás (ctrl + {{i+1}})</button>
+          <td data-label="Név">{{ user.fullname }}</td>
+          <td data-label="Foglalkozás">{{ user.job }}</td>
+          <td data-label="Aktív">{{ user.activelabel }}</td>
+          <td data-label="Műveletek">
+            <div class="action-buttons">
+              <paradise-deletebutton [fullname]="user.fullname" [id]="user.id"
+                [keyboardkey]="'ctrl + shift + '+user.id%Size" (isConfirmed)="onDelete($event)">Törlés<br />(ctrl +
+                shift +
+                {{i+1}})</paradise-deletebutton>
+              <button (click)="onUpdate(user.id)">Módosítás<br />(ctrl + {{i+1}})</button>
+            </div>
           </td>
         </tr>
         <tr *ngIf="users.length <= 0">
-          <td colspan="100" class="text-center">Sajnos nem találtunk egyetlen usert sem</td>
+          <td colspan="4" class="text-center">Sajnos nem találtunk egyetlen usert sem</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="100">
-
+          <td colspan="4">
             <div class="paginator-wrapper">
-                <button (click)="onPrevious()">Előző (F6)</button>
-                {{Page+1}}.Oldal
-                <button (click)="onNext()">Következő (F7)</button>
+              <button (click)="onPrevious()">Előző<br />(F6)</button>
+              {{Page+1}}.Oldal
+              <button (click)="onNext()">Következő<br />(F7)</button>
             </div>
           </td>
         </tr>
@@ -39,12 +43,10 @@
     </table>
   </div>
   <div>
-    <div>Összesen {{Length}} usert találtunk.</div>
   </div>
-  <div>
-    <div>
-      <button (click)="onCreate()">Létrehozás (F2)</button>
-    </div>
+
+  <div class="fabs" role="group" aria-label="Floating action buttons">
+    <button (click)="onCreate()" class="primary">Létrehozás<br />(F2)</button>
   </div>
 </section>
 <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
