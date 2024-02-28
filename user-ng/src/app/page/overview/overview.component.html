@@ -1,7 +1,13 @@
-<section class="live-updates-wrapper">
+<section class="container">
   <div class="table-wrapper">
+    <h1 class="pageheader">Összes user ({{Length}})</h1>
     <table class="user-table">
-      <caption>Összes user ({{Length}})</caption>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+        <col class="last-col" />
+      </colgroup>
       <thead>
         <tr>
           <th><a (click)="sortOn('fullname')" style="cursor: pointer">Név</a></th>
@@ -33,16 +39,14 @@
         <tr>
           <td colspan="4">
             <div class="paginator-wrapper">
-              <button (click)="onPrevious()">Előző<br />(F6)</button>
+              <button class="secondary" (click)="onPrevious()">Előző<br />(F6)</button>
               {{Page+1}}.Oldal
-              <button (click)="onNext()">Következő<br />(F7)</button>
+              <button class="secondary" (click)="onNext()">Következő<br />(F7)</button>
             </div>
           </td>
         </tr>
       </tfoot>
     </table>
-  </div>
-  <div>
   </div>
 
   <div class="fabs" role="group" aria-label="Floating action buttons">

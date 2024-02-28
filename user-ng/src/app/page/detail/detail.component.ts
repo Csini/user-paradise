@@ -121,7 +121,6 @@ export class DetailComponent implements OnInit {
 
       this.userService.createUser(this.user).subscribe(u => {
         this.user = u;
-        alert("A user sikeresen létejött.");
       });
     } else {
       //modify
@@ -135,10 +134,10 @@ export class DetailComponent implements OnInit {
 
       this.userService.updateUser(this.user.id, this.user).subscribe(u => {
         this.user = u;
-        alert("Az adatokat sikeresen lementettük.");
       });
     }
     this.router.navigate(['/overview']);
+    alert("Az adatokat sikeresen lementettük.");
   }
 
   onCancel(): void {

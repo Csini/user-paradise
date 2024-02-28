@@ -1,19 +1,16 @@
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
 table {
   border: 1px solid #ccc;
   border-collapse: collapse;
   margin: 0;
   padding: 0;
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 table caption {
   font-size: 1.5em;
   margin: .5em 0 .75em;
+  text-align: left;
 }
 
 table tr {
@@ -32,6 +29,10 @@ table th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 @media screen and (max-width: 600px) {
@@ -81,10 +82,18 @@ table th {
   table td:last-child {
     border-bottom: 0;
   }
+
+  .fabs {
+    --_viewport-margin: 2.5vmin;
+    gap: var(--_viewport-margin);
+
+    inset-block: var(--_viewport-margin) auto;
+    inset-inline: auto var(--_viewport-margin);
+  }
 }
 
 .fabs {
-  --_viewport-margin: 2.5vmin;
+  --_viewport-margin: 4.5vmin;
 
   position: fixed;
   z-index: var(--layer-1);
@@ -179,6 +188,15 @@ table th {
     transform: rotateZ(.25turn);
   }
 }
-.action-buttons{
+
+.action-buttons {
+  /*display: flex;*/
+  /*float: right;*/
+  text-align: right;
+}
+.paginator-wrapper{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

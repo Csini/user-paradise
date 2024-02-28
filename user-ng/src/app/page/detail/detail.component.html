@@ -1,4 +1,5 @@
-<div class="container">
+<section class="container">
+  <h1 class="pageheader">{{isNew()?'User létrehozása':'User módosítása'}}</h1>
   <form [formGroup]="detailForm" (ngSubmit)="onSave(detailForm)" #ngForm="ngForm">
     <div class="formelements">
       <div class="row col-100">
@@ -67,4 +68,4 @@
     </div>
     <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>
   </form>
-</div>
+</section>

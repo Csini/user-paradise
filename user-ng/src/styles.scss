@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 /* general styling */
+$base-color: #bcbcbc;
 
 body {
   /*font-family: "Open Sans", sans-serif;
   line-height: 1.25;*/
   background-color: #EEF5FD;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
 }
 
 button {
@@ -12,16 +15,19 @@ button {
 
   display: inline-block;
   border-radius: 4px;
-  background-color: #bcbcbc;
+  background-color: $base-color;
   border: none;
   color: #000000;
   text-align: center;
   /*font-size: 28px;*/
   padding: 10px;
   width: 150px;
+  font-weight: bold;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  border-style: groove;
+  border-color: $base-color;
 }
 button.primary{
   background-color: #f4511e;
@@ -29,5 +35,25 @@ button.primary{
 }
 button.danger{
   color: darkred;
+}
+button.secondary{
+  background-color: #487ae6;
+  color: #FFFFFF;
+}
+th{
+  background-color: $base-color;
+}
+h1.pageheader{
+  background-color: darkblue;
+  color: white;
+  padding: 20px 10px;
+  margin: 0px;
+}
+
+/* Style the container */
+section.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
 
