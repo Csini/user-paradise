@@ -16,7 +16,7 @@
           <td>{{ user.job }}</td>
           <td>{{ user.activelabel }}</td>
           <td>
-            <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" (isConfirmed)="onDelete($event)">Törlés (shift+ctrl + {{i+1}})</paradise-deletebutton>
+            <paradise-deletebutton [fullname]="user.fullname" [id]="user.id" [keyboardkey]="'ctrl + shift + '+user.id%Size" (isConfirmed)="onDelete($event)">Törlés (ctrl + shift + {{i+1}})</paradise-deletebutton>
             <button (click)="onUpdate(user.id)">Módosítás (ctrl + {{i+1}})</button>
           </td>
         </tr>
@@ -46,7 +46,5 @@
       <button (click)="onCreate()">Létrehozás (F2)</button>
     </div>
   </div>
-
-
 </section>
 <ng-keyboard-shortcuts [shortcuts]="shortcuts"></ng-keyboard-shortcuts>

@@ -12,7 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 @RestControllerAdvice
 public class ExceptionHandler extends ResponseStatusExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(ExceptionHandler.class);
-    public static final String ISSUE_DURING_PROCESSING_REQUEST_PLEASE_CONTACT_APPLICATION_TEAM = "Issue during Processing request, Please contact Application team";
+    public static final String ISSUE_DURING_PROCESSING_REQUEST_PLEASE_CONTACT_APPLICATION_TEAM = "A request feldolgozása során hiba történt, kérjük vegye fel a kapcsolatot az Application teammel.";
 
     
     @org.springframework.web.bind.annotation.ExceptionHandler(EntityNotFoundException.class)

@@ -16,6 +16,13 @@ const routes: Routes = [
       errorData: ErrorResolver,
     },
   },
+  {
+    path: '**',
+    component: ErrorhandlerComponent,
+    resolve: {
+      errorData: ErrorResolver,
+    },
+  },
 ];
 
 @NgModule({

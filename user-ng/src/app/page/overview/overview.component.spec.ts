@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UserService } from 'src/app/gen';
 import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
+import { ShortcutService } from 'src/app/common/shortcut.service';
 
 
 describe('OverviewComponent', () => {
@@ -22,7 +23,7 @@ describe('OverviewComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([]), HttpClientTestingModule, KeyboardShortcutsModule.forRoot(),],
-      providers: [UserService],
+      providers: [UserService, ShortcutService],
       declarations: [OverviewComponent]
     });
 

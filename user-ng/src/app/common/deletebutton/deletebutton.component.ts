@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, effect } from '@angular/core';
 import { ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { UserService } from '../../gen/api/user.service';
+import { ShortcutService } from '../shortcut.service';
 
 @Component({
   selector: 'paradise-deletebutton',
@@ -13,51 +14,43 @@ export class DeletebuttonComponent implements OnInit {
 
   @Input() fullname: string = '' + this.id;
 
+  @Input({ required: true }) keyboardkey!: string;
+
+
   @Output('isConfirmed') isConfirmed = new EventEmitter<boolean>();
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private shortcutService: ShortcutService,
+  ) {
+    console.log("this.keyboardkey:" + this.keyboardkey);
+
+    effect(() => {
+      const keySignal = shortcutService.keyboardkey();
+      console.log("keySignal:" + keySignal);
+      if(this.keyboardkey===keySignal){
+        this.onClickButton();
+      }
+    });
+
+  }
 
   ngOnInit(): void {
 
   }
 
   onClickButton() {
+    this.shortcutService.reset();
     const confirmed = confirm("Biztosan törölni akarja a '" + this.fullname + ' usert?');
 
-    if(confirmed){
+    if (confirmed) {
       this.userService.deleteUser(this.id).subscribe(() => {
         //console.log("user deleted");
         this.isConfirmed.emit(confirmed);
       });
-    }else{
+    } else {
       this.isConfirmed.emit(confirmed);
     }
-
-  }
-
-  shortcuts: ShortcutInput[] = [];
-
-  ngAfterViewInit(): void {
-    this.shortcuts.push(
-      {
-        key: "f8",
-        command: (output: ShortcutEventOutput) => {
-          //console.log(output);
-            this.onClickButton();
-
-        },
-        preventDefault: true
-      },
-      {
-        key: "shift+ctrl+"+ this.id%5,
-        command: (output: ShortcutEventOutput) => {
-          //console.log(output);
-            this.onClickButton();
-
-        },
-        preventDefault: true
-      },
-    );
 
   }
 }

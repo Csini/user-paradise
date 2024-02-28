@@ -5,6 +5,7 @@ import { UserService } from '../../gen/api/user.service';
 import { filter } from 'rxjs';
 import { ShortcutEventOutput, ShortcutInput } from 'ng-keyboard-shortcuts';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShortcutService } from '../../common/shortcut.service';
 
 @Component({
   selector: 'paradise-detail',
@@ -38,8 +39,9 @@ export class DetailComponent implements OnInit {
     private activatedroute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
+    private shortcutService: ShortcutService,
     private fb: FormBuilder) {
-
+    //console.log('detail');
   }
   ngOnInit(): void {
     this.activatedroute.paramMap.subscribe(paramMap => {
@@ -88,7 +90,7 @@ export class DetailComponent implements OnInit {
     this.detailForm.controls['lastname'].setValue(u.lastname);
     this.detailForm.controls['address'].setValue(u.address);
     this.detailForm.controls['telephone'].setValue(u.telephone);
-    this.detailForm.controls['status'].setValue(u.status==='0');
+    this.detailForm.controls['status'].setValue(u.status === '0');
     this.detailForm.controls['job'].setValue(u.job);
 
   }
@@ -115,7 +117,7 @@ export class DetailComponent implements OnInit {
       //create
 
       //active
-      this.user.status='0';
+      this.user.status = '0';
 
       this.userService.createUser(this.user).subscribe(u => {
         this.user = u;
@@ -123,11 +125,11 @@ export class DetailComponent implements OnInit {
     } else {
       //modify
 
-      if(this.detailForm.controls['status'].value){
+      if (this.detailForm.controls['status'].value) {
         //active
-        this.user.status='0';
-      }else{
-        this.user.status='1';
+        this.user.status = '0';
+      } else {
+        this.user.status = '1';
       }
 
       this.userService.updateUser(this.user.id, this.user).subscribe(u => {
@@ -142,8 +144,7 @@ export class DetailComponent implements OnInit {
   }
 
   onDelete(confirmed: boolean): void {
-
-    if(confirmed){
+    if (confirmed) {
       this.router.navigate(['/overview']);
     }
   }
@@ -165,6 +166,14 @@ export class DetailComponent implements OnInit {
         command: (output: ShortcutEventOutput) => {
           //console.log(output);
           this.onCancel();
+        },
+        preventDefault: true
+      },
+      {
+        key: "f8",
+        command: (output: ShortcutEventOutput) => {
+          console.log("this.shortcutService.keyboardkey.set(\"f8\")");
+          this.shortcutService.keyboardkey.set("f8");
         },
         preventDefault: true
       },

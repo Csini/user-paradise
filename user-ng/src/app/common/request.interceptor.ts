@@ -32,7 +32,7 @@ export class RequestInterceptor implements HttpInterceptor {
           message:
             message ||
             error?.statusText ||
-            'The cause of the error is unknown. Please contact your administrator',
+            'Ismeretlen hiba. Kérjük vegye fel a kapcsolatot a administrátorral.',
         });
         this.router.navigate(['/error']);
         return EMPTY;
